@@ -1,1 +1,45 @@
-# devops
+cluster -> conjunto de máquinas virtuais ou fisicas responsavel por um sistema distribuido
+
+nodes -> unidade de maquina virtual de um cluster
+
+namespace -> etiqueta responsavel pelo agrupamento de objetos em clusters virtuais.
+
+label -> rótulo descritivo para organizar subconjuntos de objetos do cluster.
+
+deployment -> responsavel pela gestao da versao da aplicação do container
+
+replicaSet -> responsavel pela gestao da quantidade de pods
+
+pod -> responsavel pela gestao de um ou mais containers
+
+container -> virtualização de um ambiente (SO)
+
+image -> espelhamento virtualizado de uma aplicação
+
+volume -> unidade de armazenamento acessivel aos containers de uma pod. 
+
+selector -> é uma etiqueta de identificação de um grupo de containers.
+
+service -> responsável por expor os containers de cada pod ao mundo externo, seja via porta ou ip. (DNS)
+
+controller -> responsavel por gerenciar o estado das pods por meio de eventos, sejam agendados ou por gatilhos apartir do mundo externo. 
+
+loadBalance -> responsavel por balancear a carga de requisições dos clientes para as aplicações, evitando sobrecargas.
+
+serviceRegistry -> responsavel por registrar as pods em um centralizador que irá determinar qual pod deve receber uma requisição quando solicitada.
+
+gateway -> Responsável por gerenciar as requisições do mundo externo até as pods corretas, possibilitando a gestão, filtragem e bloqueio.
+
+circuitBreak -> estratégia que evita sobrecarga de requisiçoes para uma aplicação que esteja indisponivel ou instavel que possa prejudicar o ecosistema. 
+
+retry -> retentativa de acesso a uma determinada aplicação por uma requisição.
+
+serviceMesh -> malha de serviços, responsavel por gerenciar diferentes componentes compartilhados das aplicações. ex: segurança(autenticação e autorização), politicas de uso, logs. 
+
+sideCar -> proxy existente a nivel do container responsavel pela comunicação a aplicação do mesmo.
+
+configMap -> central de chave/valor responsavel por guardar em tempo real informações de ambientes utilizadas por aplicações.
+
+canary release-> estratégia de deploy utilizada para evitar grandes impactos ao cliente final. É feita bifurcações de requisições entre versões de pods para monitorar o funcionamento das aplicações. A idéia é poder escalar o número de requisições de forma gradual até a ultima versão não ser utilizada ou rollback que evitará maiores impactos.
+
+dark launch -> estratégia utilizada para verificar o desempenho do sistema antes de publicar para o usuario final. O fluxo das novas features são usados com dados de usuarios reais sem retornar o resultado para os mesmos.

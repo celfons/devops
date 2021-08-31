@@ -62,6 +62,12 @@ istio/consul -> ecosistema de service mesh.
 
 envoy -> Proxy responsavel pelo trafego de entrada e saida de dados.
 
+kiali -> solução que demonstra de forma gráfica a conectividade de forma granular o ecosistema do cluster.
+
+jaeger/zipkin -> solução responsavel por rastrear e exibir o trafego da comunicação entre/para microserviços.
+
+Helm -> repositorio de dependencias e pacotes para kubernetes.
+
 Configurações YAML k8s
 
 apiversion: versao da API que o kubernetes vai trabalhar

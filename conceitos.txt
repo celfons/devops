@@ -18,7 +18,7 @@ image -> espelhamento virtualizado de uma aplicação
 
 volume -> unidade de armazenamento acessivel aos containers de uma pod. 
 
-selector -> é uma etiqueta de identificação de um grupo de containers.
+selector -> é uma etiqueta de identificação de um grupo de containers, usado pelo serviço para encontrar a pod a ser utilizada.
 
 service -> responsável por expor os containers de cada pod ao mundo externo, seja via porta ou ip. (DNS)
 
@@ -34,7 +34,7 @@ circuitBreak -> estratégia que evita sobrecarga de requisiçoes para uma aplica
 
 retry -> retentativa de acesso a uma determinada aplicação por uma requisição.
 
-serviceMesh -> malha de serviços, responsavel por gerenciar diferentes componentes compartilhados das aplicações. ex: segurança(autenticação e autorização), politicas de uso, logs. 
+serviceMesh -> malha de serviços, responsavel por gerenciar diferentes componentes compartilhados das aplicações. ex: segurança(autenticação e autorização), politicas de uso, logs e comunicação.
 
 sideCar -> proxy existente a nivel do container responsavel pela comunicação a aplicação do mesmo.
 
@@ -43,3 +43,47 @@ configMap -> central de chave/valor responsavel por guardar em tempo real inform
 canary release-> estratégia de deploy utilizada para evitar grandes impactos ao cliente final. É feita bifurcações de requisições entre versões de pods para monitorar o funcionamento das aplicações. A idéia é poder escalar o número de requisições de forma gradual até a ultima versão não ser utilizada ou rollback que evitará maiores impactos.
 
 dark launch -> estratégia utilizada para verificar o desempenho do sistema antes de publicar para o usuario final. O fluxo das novas features são usados com dados de usuarios reais sem retornar o resultado para os mesmos.
+
+port-foward -> conexão entre maquina fisica e virtual.
+
+realm/tenant -> grupos isolados de aplicações/usuarios.
+
+kubernetes -> orquestrador de containers.
+
+docker -> virtualizador de aplicações.
+
+prometheus -> aplicação usada para captação de métricas computacionais das pods.
+
+grafana -> dashboard utilizado para visualização de dados.
+
+loki-grafana / ELK -> ecosistema de captação de logs.
+
+istio/consul -> ecosistema de service mesh.
+
+envoy -> Proxy responsavel pelo trafego de entrada e saida de dados.
+
+Configurações YAML k8s
+
+apiversion: versao da API que o kubernetes vai trabalhar
+kind: tipo de objeto, ex: Deployment, Service...
+metadata: informações descritivas (ex: name)
+spec: espeficicação do objeto
+	type: ClusterIP (expoe ip interno) ou LoadBalancer (expoe ip externo)
+	ports:
+		- protocol: TCP
+		name: http-svc
+		port: 3000
+	replicas: replicaSet para determinar quantidade de pods, ex: 1
+	selector: etiqueta de objeto
+		matchLabels: 
+			app:server (etiqueta seletor para o service comunicar com a pod)
+	template:
+		metadata:
+			labels:
+				app:server
+		spec:
+			containers:
+				-name: NOME_CONTAINER
+				image: IMAGEM_DOCKER em um container registry
+				ports:
+					- containerPort: PORTA_APP , ex: 8080
